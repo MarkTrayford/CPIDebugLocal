@@ -8,7 +8,10 @@
  *   node groovy-server.js
  * 
  * Then visit:
- *   http://localhost:4004/debug/{encoded-string}
+ *   http://localhost:4004/debug/      << Use this to save data locally
+ *   http://localhost:4004/contiva/      << Add this URL to cpi helper plugin to convert and reroute to Contiva IDE
+ * 
+ * The server decodes the data, saves it to files, and can open Contiva IDE in Chrome.
  */
 
 const express = require('express');
