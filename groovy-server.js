@@ -143,41 +143,7 @@ function cpiHelperToContiva(cpiHelperData) {
   return contiva;
 }
 
-/**
- * Opens Chrome with the Contiva IDE URL
- */
-// function openInChrome(encodedData) {
-//   return new Promise((resolve, reject) => {
-//     const url = `https://ide.contiva.com/cpi?data=${encodedData}`;
-//     console.log(`\n🌐 Opening Chrome with URL:`);
-//     console.log(`${url}\n`);
 
-//     let command;
-
-//     if (process.platform === "win32") {
-//       // Windows
-//       command = `start chrome "${url}"`;
-//     } else if (process.platform === "darwin") {
-//       // macOS
-//       command = `open -a "Google Chrome" "${url}"`;
-//     } else {
-//       // Linux
-//       command = `google-chrome "${url}"`;
-//     }
-
-//     exec(command, (error) => {
-//       if (error) {
-//         console.error(`⚠️  Could not open Chrome: ${error.message}`);
-//         console.log(`ℹ️  Try opening this URL manually:`);
-//         console.log(`${url}`);
-//         resolve(); // Don't reject, just inform the user
-//       } else {
-//         console.log(`✅ Chrome opened successfully!`);
-//         resolve();
-//       }
-//     });
-//   });
-// }
 
 /**
  * Converts an object to Java .properties file format
@@ -378,22 +344,22 @@ app.get('/contiva/test', async (req, res) => {
   try {
     logger.info(`Testing /contiva/test endpoint with hardcoded Contiva data`);
 
-    // Hardcoded test data (same as in contiva-encoder.js)
-    const contivaData = {
-      currentSessionType: "groovy",
-      scriptInput: '{ "test": "testval3" }',
-      script:
-        "import com.sap.gateway.ip.core.customdev.util.Message;\n\ndef Message processData(Message message) {\n    return message;\n}",
-      functionName: "processData",
-      headers: {
-        SAP_MessageProcessingLogID: "AGlnwRPCOT1y6HLEfkmHVDXWnnu0",
-        SAP_TRACE_HEADER_1768407316206_MessageType: "STEP",
-      },
-      properties: {
-        AnotherProp: "conf1",
-        TestingProp: "conf2",
-      },
-    };
+    // // Hardcoded test data (same as in contiva-encoder.js)
+    // const contivaData = {
+    //   currentSessionType: "groovy",
+    //   scriptInput: '{ "test": "testval3" }',
+    //   script:
+    //     "import com.sap.gateway.ip.core.customdev.util.Message;\n\ndef Message processData(Message message) {\n    return message;\n}",
+    //   functionName: "processData",
+    //   headers: {
+    //     SAP_MessageProcessingLogID: "AGlnwRPCOT1y6HLEfkmHVDXWnnu0",
+    //     SAP_TRACE_HEADER_1768407316206_MessageType: "STEP",
+    //   },
+    //   properties: {
+    //     AnotherProp: "conf1",
+    //     TestingProp: "conf2",
+    //   },
+    // };
     
     logger.info(`Contiva data prepared`);
     
@@ -469,23 +435,23 @@ app.get('/contiva/:data', async (req, res) => {
     logger.debug(`  script field: ${hasScript ? "✓" : "✗"}`);
 
     // Convert CPIHelper to Contiva format
-    //const contivaData = cpiHelperToContiva(cpiHelperData);
+    const contivaData = cpiHelperToContiva(cpiHelperData);
     // Hardcoded test data (same as in contiva-encoder.js)
-    const contivaData = {
-      currentSessionType: "groovy",
-      scriptInput: '{ "test": "testval3" }',
-      script:
-        "//import com.sap.gateway.ip.core.customdev.util.Message;\n\ndef Message processData(Message message) {\n    return message;\n}",
-      functionName: "processData",
-      headers: {
-        SAP_MessageProcessingLogID: "AGlnwRPCOT1y6HLEfkmHVDXWnnu0",
-        SAP_TRACE_HEADER_1768407316206_MessageType: "STEP",
-      },
-      properties: {
-        AnotherProp: "conf1",
-        TestingProp: "conf2",
-      },
-    };
+    // const contivaData = {
+    //   currentSessionType: "groovy",
+    //   scriptInput: '{ "test": "testval3" }',
+    //   script:
+    //     "//import com.sap.gateway.ip.core.customdev.util.Message;\n\ndef Message processData(Message message) {\n    return message;\n}",
+    //   functionName: "processData",
+    //   headers: {
+    //     SAP_MessageProcessingLogID: "AGlnwRPCOT1y6HLEfkmHVDXWnnu0",
+    //     SAP_TRACE_HEADER_1768407316206_MessageType: "STEP",
+    //   },
+    //   properties: {
+    //     AnotherProp: "conf1",
+    //     TestingProp: "conf2",
+    //   },
+    // };
     logger.info(`Converted to Contiva format`);
 
     // Encode Contiva data
