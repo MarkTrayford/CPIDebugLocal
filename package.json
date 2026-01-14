@@ -1,0 +1,28 @@
+{
+  "name": "groovy-decoder",
+  "version": "1.0.0",
+  "description": "Decoder for Groovy Debugger encoded data",
+  "main": "groovy-decoder.js",
+  "scripts": {
+    "decode": "node groovy-decoder.js",
+    "decode-universal": "node universal-decoder.js",
+    "analyze": "node advanced-decoder.js",
+    "server": "node groovy-server.js",
+    "start": "node groovy-server.js"
+  },
+  "keywords": [
+    "groovy",
+    "decoder",
+    "base64",
+    "deflate",
+    "pako",
+    "express"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "express": "^4.22.1",
+    "unzipper": "^0.12.3"
+  }
+}
